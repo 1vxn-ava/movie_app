@@ -56,12 +56,12 @@ class Movie {
     if (posterPath == null) {
       return 'https://upload.wikimedia.org/wikipedia/commons/a/a3/Image-not-found.png';
     }
-    print('https://image.tmdb.org/t/p/w500$posterPath');
-    return 'https://image.tmdb.org/t/p/w500$posterPath';
+    print('https://image.tmdb.org/t/p/w300$posterPath');
+    return 'https://image.tmdb.org/t/p/w300$posterPath';
   }
 
   get getBackdropPath {
-    return 'https://image.tmdb.org/t/p/w500$backdropPath';
+    return 'https://image.tmdb.org/t/p/w300$backdropPath';
   }
 
   

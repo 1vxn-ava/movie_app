@@ -11,16 +11,30 @@ class HomeScreen extends StatelessWidget {
     final providerOfMovie = Provider.of<MovieProvider>(context);
 
     return Scaffold(
-      appBar: AppBar(title: Text('Movie App'), backgroundColor: Colors.indigo),
+      appBar: AppBar(
+        title: Text('Movie App'), 
+        backgroundColor: Colors.indigo
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Mantener el swiper con películas populares
             CustomSwipper(movies: providerOfMovie.popularMovies),
             SizedBox(height: 30),
-            CustomListView(movies: providerOfMovie.nowPlayingMovies, title: 'Now Playing',),
+            
+            // CAMBIO PRINCIPAL: Now Playing como primera lista y más prominente
+            CustomListView(
+              movies: providerOfMovie.nowPlayingMovies, 
+              title: 'Now Playing - En Cartelera',
+            ),
             SizedBox(height: 10),
-            CustomListView(movies: providerOfMovie.popularMovies, title: 'Popular',),
+            
+            // Popular movies como segunda opción
+            CustomListView(
+              movies: providerOfMovie.popularMovies, 
+              title: 'Popular Movies',
+            ),
             SizedBox(height: 10),
           ],
         ),

@@ -21,10 +21,15 @@ class MovieProvider extends ChangeNotifier {
     var response = await http.get(url);
     return response.body;
   }
-   Future<String> getNowPlayingMovies() async { 
-    final url = Uri.https(urlm, nowPlayingSeg, {'api_key': apiKey,'page': '1',
-      'region': 'MX'});
+  
+  Future<String> getNowPlayingMovies() async { 
+    final url = Uri.https(urlm, nowPlayingSeg, {
+      'api_key': apiKey,
+      'page': '1',
+      'region': 'MX'
+    });
     var response = await http.get(url);
+    print(response);
     return response.body;
   }
 
@@ -33,11 +38,14 @@ class MovieProvider extends ChangeNotifier {
     final data = convert.jsonDecode(resp) as Map<String, dynamic>;
     final popularResponse = MovieResponse.fromJson(data);
     popularMovies = popularResponse.results;
+    notifyListeners(); // AGREGAR ESTA LÍNEA
   }
+  
   void getMoviesNowPlaying() async { 
     final resp = await getNowPlayingMovies();
     final data = convert.jsonDecode(resp) as Map<String, dynamic>;
     final nowPlayingResponse = MovieResponse.fromJson(data);
     nowPlayingMovies = nowPlayingResponse.results;
+    notifyListeners(); // AGREGAR ESTA LÍNEA
   }
 }
