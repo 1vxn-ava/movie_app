@@ -19,18 +19,18 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Mantener el swiper con películas populares
+            // Swiper con películas populares
             CustomSwipper(movies: providerOfMovie.popularMovies),
             SizedBox(height: 30),
             
-            // CAMBIO PRINCIPAL: Now Playing como primera lista y más prominente
+            // Now Playing como nueva lista
             CustomListView(
               movies: providerOfMovie.nowPlayingMovies, 
               title: 'Now Playing - En Cartelera',
             ),
             SizedBox(height: 10),
             
-            // Popular movies como segunda opción
+            // Popular movies
             CustomListView(
               movies: providerOfMovie.popularMovies, 
               title: 'Popular Movies',

@@ -22,6 +22,7 @@ class MovieProvider extends ChangeNotifier {
     return response.body;
   }
   
+  // Funcion async para traer las peliculas en now_playing de la API
   Future<String> getNowPlayingMovies() async { 
     final url = Uri.https(urlm, nowPlayingSeg, {
       'api_key': apiKey,
@@ -38,14 +39,15 @@ class MovieProvider extends ChangeNotifier {
     final data = convert.jsonDecode(resp) as Map<String, dynamic>;
     final popularResponse = MovieResponse.fromJson(data);
     popularMovies = popularResponse.results;
-    notifyListeners(); // AGREGAR ESTA LÍNEA
+    notifyListeners(); 
   }
   
+  // Nueva funcion para traer las peliculas en now_playing
   void getMoviesNowPlaying() async { 
     final resp = await getNowPlayingMovies();
     final data = convert.jsonDecode(resp) as Map<String, dynamic>;
     final nowPlayingResponse = MovieResponse.fromJson(data);
     nowPlayingMovies = nowPlayingResponse.results;
-    notifyListeners(); // AGREGAR ESTA LÍNEA
+    notifyListeners(); 
   }
 }

@@ -15,27 +15,27 @@ class CustomListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start, // MEJORAR ALINEACIÓN
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8), // AUMENTAR PADDING
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Text(
               title,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 18, // AUMENTAR TAMAÑO DE FUENTE
+                fontSize: 18,
                 color: Colors.indigoAccent,
               ),
             ),
           ),
           SizedBox(height: 8), 
           SizedBox(
-            height: 280, // AUMENTAR ALTURA PARA MEJOR VISUALIZACIÓN
+            height: 280,
             width: double.infinity,
             child: ListView.builder(
               itemCount: movies.length,
               scrollDirection: Axis.horizontal,
-              padding: EdgeInsets.symmetric(horizontal: 8), // AGREGAR PADDING
+              padding: EdgeInsets.symmetric(horizontal: 8),
               itemBuilder: (_, i) {
                 final movie = movies[i];
                 return GestureDetector(
@@ -45,16 +45,16 @@ class CustomListView extends StatelessWidget {
                     arguments: movie,
                   ),
                   child: Container(
-                    width: 130, // AUMENTAR ANCHO
+                    width: 130,
                     margin: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // IMAGEN DEL PÓSTER
+                        // Imagen de la pelicula (póster)
                         ClipRRect(
                           borderRadius: BorderRadius.circular(12),
                           child: FadeInImage(
-                            height: 190, // AUMENTAR ALTURA
+                            height: 190,
                             width: double.infinity,
                             fit: BoxFit.cover,
                             placeholder: AssetImage('assets/images/loading.gif'),
@@ -63,7 +63,7 @@ class CustomListView extends StatelessWidget {
                         ),
                         SizedBox(height: 8),
                         
-                        // TÍTULO DE LA PELÍCULA
+                        // Título de la película
                         Text(
                           movie.title,
                           overflow: TextOverflow.ellipsis,
@@ -76,7 +76,7 @@ class CustomListView extends StatelessWidget {
                         ),
                         SizedBox(height: 4),
                         
-                        // FECHA DE ESTRENO
+                        // Fecha de estreno
                         Text(
                           'Estreno: ${movie.releaseDate.toLocal().toString().split(" ")[0]}',
                           style: TextStyle(
