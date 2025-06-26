@@ -36,12 +36,20 @@ ThunkAction<AppState> loadNowPlayingMovies() {
 ThunkAction<AppState> loadAllMovies() {
   return (Store<AppState> store) async {
     store.dispatch(SetLoadingAction(true));
-    
+   
     try {
-      // Cargar ambas listas en paralelo
+      // Crear los futures directamente de los servicios
       await Future.wait([
-        store.dispatch(loadPopularMovies()),
-        store.dispatch(loadNowPlayingMovies()),
+        MovieService.getPopularMovies().then((movies) {
+          store.dispatch(LoadPopularMoviesSuccessAction(movies));
+        }).catchError((error) {
+          store.dispatch(LoadPopularMoviesFailAction(error.toString()));
+        }),
+        MovieService.getNowPlayingMovies().then((movies) {
+          store.dispatch(LoadNowPlayingMoviesSuccessAction(movies));
+        }).catchError((error) {
+          store.dispatch(LoadNowPlayingMoviesFailAction(error.toString()));
+        }),
       ]);
     } catch (error) {
       store.dispatch(LoadPopularMoviesFailAction(error.toString()));
@@ -50,4 +58,3 @@ ThunkAction<AppState> loadAllMovies() {
     }
   };
 }
-
