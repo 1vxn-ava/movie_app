@@ -4,13 +4,13 @@ class AppState {
   final List<Movie> popularMovies;
   final List<Movie> nowPlayingMovies;
   final bool isLoading;
-  final String? errorMessage;
+  final String? error;
 
   AppState({
     required this.popularMovies,
     required this.nowPlayingMovies,
     required this.isLoading,
-    this.errorMessage,
+    this.error,
   });
 
   factory AppState.initial() {
@@ -18,7 +18,7 @@ class AppState {
       popularMovies: [],
       nowPlayingMovies: [],
       isLoading: false,
-      errorMessage: null,
+      error: null,
     );
   }
 
@@ -26,18 +26,13 @@ class AppState {
     List<Movie>? popularMovies,
     List<Movie>? nowPlayingMovies,
     bool? isLoading,
-    String? errorMessage,
+    String? error,
   }) {
     return AppState(
       popularMovies: popularMovies ?? this.popularMovies,
       nowPlayingMovies: nowPlayingMovies ?? this.nowPlayingMovies,
       isLoading: isLoading ?? this.isLoading,
-      errorMessage: errorMessage ?? this.errorMessage,
+      error: error ?? this.error,
     );
-  }
-
-  @override
-  String toString() {
-    return 'AppState{popularMovies: ${popularMovies.length}, nowPlayingMovies: ${nowPlayingMovies.length}, isLoading: $isLoading}';
   }
 }
